@@ -1,3 +1,27 @@
+//get the required inqierer
+//prompt for the manager name 
+//prompt for the id
+//prompt for the email address 
+//prompt for the office number
+const inquirer = require('inquirer')
+
+const COMMON_QUESTIONS = [
+  {
+    type: 'input', 
+    message: 'Enter the employee name',
+    name: 'employeeName'
+  }, 
+  {
+    type: 'input', 
+    message: 'Enter the employee id',
+    name: 'employeeID'
+  },
+  {
+    type: 'input', 
+    message
+  }
+];
+
 /*
 WHEN I start the application
 THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number

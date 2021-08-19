@@ -1,0 +1,17 @@
+{
+  "name": "bossman",
+  "version": "1.0.0",
+  "description": "Generate a webpage of employees based on user input",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ray Ashir",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^6.3.1"
+  }
+}
