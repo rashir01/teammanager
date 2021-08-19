@@ -3,7 +3,8 @@
 //prompt for the id
 //prompt for the email address 
 //prompt for the office number
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const Manager = require ('./lib/Manager');
 
 const COMMON_QUESTIONS = [
   {
@@ -18,10 +19,35 @@ const COMMON_QUESTIONS = [
   },
   {
     type: 'input', 
-    message
+    message: 'Enter the email address',
+    name: 'employeeEmail'
+    //TODO: add email validation
   }
 ];
 
+const MANAGER_QUESTIONS = [
+  {
+    type: 'input', 
+    message: 'Enter office number',
+    name: 'officeNumber'
+  }
+]
+
+const employeeObjects = [];
+
+function init() {
+  console.log("Enter Manager Data");
+  inquirer
+  .prompt(COMMON_QUESTIONS.concat(MANAGER_QUESTIONS))
+  .then((response) => {
+    console.log(response);
+    console.log(`Name ${response.employeeName} id ${response.employeeID} email ${response.employeeEmail}`);
+    employeeObjects.push(new Manager(response.employeeName, response.employeeID, response.employeeEmail, response.officeNumber));
+    console.log(employeeObjects);
+  });
+}
+
+init();
 /*
 WHEN I start the application
 THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
