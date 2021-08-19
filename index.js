@@ -57,18 +57,18 @@ const MENU_QUESTION = [
 ];
 
 const teamArray = [];
-let currentEmployeeType = 'Manager';
+let currentEmployeeType = Manager.getRole();
 
 function processResponse(response) {
   switch (currentEmployeeType) {
-    case 'Manager':
+    case Manager.getRole():
       teamArray.push(new Manager(response.employeeName, response.employeeID, response.employeeEmail, response.officeNumber));
       break;
-    case 'Engineer': 
+    case Engineer.getRole(): 
       teamArray.push(new Engineer(response.employeeName, response.employeeID,
         response.employeeEmail, response.gitHubUserName));
       break;
-    case 'Intern': 
+    case Intern.getRole(): 
       teamArray.push(new Intern(response.employeeName, response.employeeID, response.employeeEmail, response.schoolName));
       break;
   }
@@ -78,15 +78,14 @@ function processResponse(response) {
 function determineNextAction(option) {
   switch(option.toString()) {
     case "Add Engineer": 
-      currentEmployeeType = 'Engineer';
+      currentEmployeeType = Engineer.getRole();
       askQuestions(ENGINEER_QUESTIONS);
       break;
     case 'Add Intern':
-      currentEmployeeType = 'Intern';
+      currentEmployeeType = Intern.getRole();
       askQuestions(INTERN_QUESTIONS)
       break;
     case 'Exit':
-      console.log(`your employee list is ${JSON.stringify(teamArray)}`);
       console.log("exiting....");
       break;
   }
@@ -105,8 +104,7 @@ function askQuestions(questions) {
 
 askQuestions(MANAGER_QUESTIONS);
 /*
-WHEN I enter the team manager’s name, employee ID, email address, and office number
-THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+
 
 
 User Story
@@ -132,11 +130,7 @@ THEN that GitHub profile opens in a new tab
 
 
 
-WHEN I select the engineer option
-THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
 
-WHEN I select the intern option
-THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 
 
 WHEN I decide to finish building my team
@@ -146,6 +140,12 @@ THEN I exit the application, and the HTML is generated
 DONE
 WHEN I start the application
 THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
+WHEN I enter the team manager’s name, employee ID, email address, and office number
+THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+WHEN I select the engineer option
+THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+WHEN I select the intern option
+THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 
 
 */
