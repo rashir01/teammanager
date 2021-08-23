@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
 const Manager = require('../lib/Manager');
 class Utils {
   static generateSkeletonHTML(teamArray) {
@@ -25,6 +26,7 @@ class Utils {
       ${this.addEngineerToSkeleton(teamArray)}
       </div>
       <div class="row card-row interncards justify-content-center p0 m-3">
+      ${this.addInternToSkeleton(teamArray)}
       </div>
     </body>
     </html>`;
@@ -62,24 +64,42 @@ class Utils {
       toReturn = toReturn + `<div class="card managercard  p0 m-3">
       <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
       <div class="container">
-        <h4><b>${engineer.name}</b></h4>
+        <h4><b>${engineer.getName()}</b></h4>
         <p>${Engineer.getRole()}</p>
         <hr>
         <p>ID: ${engineer.id}</p>
         <p>Email: ${engineer.email}</p>
-        <p>office: ${engineer.gitHubUserName}</p>
+        <p>github: ${engineer.gitHubUserName}</p>
       </div>
     </div>
     `
   
     });
-    
-
-    console.log(engArray);
+   
     return toReturn;
   }
 
-  static addInternToSkeleton() {}
+  static addInternToSkeleton(teamArray) {
+    const engArray = teamArray.filter(teamMember => teamMember instanceof Intern)
+    let toReturn = ""
+    engArray.forEach(intern => {
+      toReturn = toReturn + `<div class="card managercard  p0 m-3">
+      <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
+      <div class="container">
+        <h4><b>${intern.getName()}</b></h4>
+        <p>${Intern.getRole()}</p>
+        <hr>
+        <p>ID: ${intern.getId()}</p>
+        <p>Email: ${intern.email}</p>
+        <p>school: ${intern.schoolName}</p>
+      </div>
+    </div>
+    `
+  
+    });
+   
+    return toReturn;
+  }
 
   filterArray(employee, type) {
     return employee instanceof type; 
