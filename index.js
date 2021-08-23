@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require ('./lib/Manager');
+const GenerateHTML = require('./src/GenerateHTML.js');
 
 const COMMON_QUESTIONS = [
   {
@@ -86,6 +87,7 @@ function determineNextAction(option) {
       askQuestions(INTERN_QUESTIONS)
       break;
     case 'Exit':
+      console.log("generate html");
       console.log("exiting....");
       break;
   }
@@ -98,11 +100,16 @@ function askQuestions(questions) {
   .prompt(COMMON_QUESTIONS.concat(questions).concat(MENU_QUESTION))
   .then((response) => {
     processResponse(response);
-  });
+    return response;
+  }).then((response) => {
+    //console.log(response)
+  })
+  
 }
 
-
+GenerateHTML.generateSkeletonHTML();
 askQuestions(MANAGER_QUESTIONS);
+
 /*
 
 
@@ -112,6 +119,7 @@ AS A manager
 I WANT to generate a webpage that displays my team's basic info
 SO THAT I have quick access to their emails and GitHub profiles
 Acceptance Criteria
+
 GIVEN a command-line application that accepts user input
 WHEN I am prompted for my team members and their information
 THEN an HTML file is generated that displays a nicely formatted team roster based on user input
@@ -124,13 +132,6 @@ THEN my default email program opens and populates the TO field of the email with
 
 WHEN I click on the GitHub username
 THEN that GitHub profile opens in a new tab
-
-
-
-
-
-
-
 
 
 WHEN I decide to finish building my team
