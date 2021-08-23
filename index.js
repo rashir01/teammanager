@@ -88,6 +88,7 @@ function determineNextAction(option) {
       break;
     case 'Exit':
       console.log("generate html");
+      GenerateHTML.generateSkeletonHTML(teamArray);
       console.log("exiting....");
       break;
   }
@@ -100,15 +101,12 @@ function askQuestions(questions) {
   .prompt(COMMON_QUESTIONS.concat(questions).concat(MENU_QUESTION))
   .then((response) => {
     processResponse(response);
-    return response;
-  }).then((response) => {
-    //console.log(response)
   })
-  
 }
 
-GenerateHTML.generateSkeletonHTML();
 askQuestions(MANAGER_QUESTIONS);
+
+
 
 /*
 

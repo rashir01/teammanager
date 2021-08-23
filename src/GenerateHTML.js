@@ -1,6 +1,8 @@
 const fs = require('fs');
+const Engineer = require('../lib/Engineer');
+const Manager = require('../lib/Manager');
 class Utils {
-  static generateSkeletonHTML() {
+  static generateSkeletonHTML(teamArray) {
     let htmlSkeleton = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -15,6 +17,15 @@ class Utils {
           <h1 class="display-4 ">Welcome to the team page </h1>
         </div>
       </div>
+    
+      ${this.addManagerToSkeleton(teamArray[0])}
+        
+      <div class="row card-row engineercards justify-content-center p0 m-3">
+
+      ${this.addEngineerToSkeleton(teamArray)}
+      </div>
+      <div class="row card-row interncards justify-content-center p0 m-3">
+      </div>
     </body>
     </html>`;
 
@@ -23,11 +34,56 @@ class Utils {
       );
   }
 
-  static addManagerToSkeleton() {}
+  static addManagerToSkeleton(manager) {
+    console.log("add manager to skel")
+    // manager = {name:"Manager Dude", 
+    //             id:"1",
+    //             email:"manager@manage.com",
+    //             office:"ABC123"}
+    return `<div class="row card-row manager-row justify-content-center p0 m-3">
+        <div class="card managercard  p0 m-3">
+          <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
+          <div class="container">
+            <h4><b>${manager.name}</b></h4>
+            <p>Manager</p>
+            <hr>
+            <p>ID: ${manager.id}</p>
+            <p>Email: ${manager.email}</p>
+            <p>office: ${manager.office}</p>
+          </div>
+        </div>
+      </div>`
+  }
 
-  static addEngineerToSkeleton() {}
+  static addEngineerToSkeleton(teamArray) {
+    const engArray = teamArray.filter(teamMember => teamMember instanceof Engineer)
+    let toReturn = ""
+    engArray.forEach(engineer => {
+      toReturn = toReturn + `<div class="card managercard  p0 m-3">
+      <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
+      <div class="container">
+        <h4><b>${engineer.name}</b></h4>
+        <p>${Engineer.getRole()}</p>
+        <hr>
+        <p>ID: ${engineer.id}</p>
+        <p>Email: ${engineer.email}</p>
+        <p>office: ${engineer.gitHubUserName}</p>
+      </div>
+    </div>
+    `
+  
+    });
+    
+
+    console.log(engArray);
+    return toReturn;
+  }
 
   static addInternToSkeleton() {}
+
+  filterArray(employee, type) {
+    return employee instanceof type; 
+  }
 }
 module.exports = Utils
 
