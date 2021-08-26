@@ -39,7 +39,6 @@ class Utils {
   static addManagerToSkeleton(manager) {
     return `<div class="row card-row manager-row justify-content-center p0 m-3">
         <div class="card managercard  p0 m-3">
-          <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
           <div class="container">
             <h4><b>${manager.getName()}</b></h4>
             <p>Manager</p>
@@ -57,7 +56,6 @@ class Utils {
     let toReturn = ""
     engArray.forEach(engineer => {
       toReturn = toReturn + `<div class="card engineercard  p0 m-3">
-      <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
       <div class="container">
         <h4><b>${engineer.getName()}</b></h4>
         <p>${Engineer.getRole()}</p>
@@ -78,7 +76,6 @@ class Utils {
     let toReturn = ""
     engArray.forEach(intern => {
       toReturn = toReturn + `<div class="card interncard p0 m-3">
-      <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
       <div class="container">
         <h4><b>${intern.getName()}</b></h4>
         <p>${Intern.getRole()}</p>
