@@ -4,14 +4,18 @@
   "description": "Generate a webpage of employees based on user input",
   "main": "index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "test": "tests"
   },
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
   "author": "Ray Ashir",
   "license": "ISC",
   "dependencies": {
     "inquirer": "^6.3.1"
+  },
+  "devDependencies": {
+    "jest": "^26.5.2"
   }
 }

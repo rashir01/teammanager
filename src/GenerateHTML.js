@@ -15,7 +15,7 @@ class Utils {
     <body>
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4 ">Welcome to the team page </h1>
+          <h1 class="display-4 text-center">Welcome to the team page </h1>
         </div>
       </div>
     
@@ -31,27 +31,22 @@ class Utils {
     </body>
     </html>`;
 
-    fs.writeFileSync('index.html', htmlSkeleton, (err) =>
+    fs.writeFileSync('SAMPLE_INDEX.html', htmlSkeleton, (err) =>
         err ? console.log(err) : ""
       );
   }
 
   static addManagerToSkeleton(manager) {
-    console.log("add manager to skel")
-    // manager = {name:"Manager Dude", 
-    //             id:"1",
-    //             email:"manager@manage.com",
-    //             office:"ABC123"}
     return `<div class="row card-row manager-row justify-content-center p0 m-3">
         <div class="card managercard  p0 m-3">
           <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
           <div class="container">
-            <h4><b>${manager.name}</b></h4>
+            <h4><b>${manager.getName()}</b></h4>
             <p>Manager</p>
             <hr>
-            <p>ID: ${manager.id}</p>
-            <p>Email: ${manager.email}</p>
-            <p>office: ${manager.office}</p>
+            <p>ID: ${manager.getId()}</p>
+            <p>Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></p>
+            <p>office: ${manager.getOfficeNumber()}</p>
           </div>
         </div>
       </div>`
@@ -61,19 +56,18 @@ class Utils {
     const engArray = teamArray.filter(teamMember => teamMember instanceof Engineer)
     let toReturn = ""
     engArray.forEach(engineer => {
-      toReturn = toReturn + `<div class="card managercard  p0 m-3">
+      toReturn = toReturn + `<div class="card engineercard  p0 m-3">
       <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
       <div class="container">
         <h4><b>${engineer.getName()}</b></h4>
         <p>${Engineer.getRole()}</p>
         <hr>
-        <p>ID: ${engineer.id}</p>
-        <p>Email: ${engineer.email}</p>
-        <p>github: ${engineer.gitHubUserName}</p>
+        <p>ID: ${engineer.getId()}</p>
+        <p>Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></p>
+        <p>github: <a href="https://github.com/${engineer.getGitHubUserName()}">${engineer.getGitHubUserName()}</a></p>
       </div>
     </div>
     `
-  
     });
    
     return toReturn;
@@ -83,51 +77,22 @@ class Utils {
     const engArray = teamArray.filter(teamMember => teamMember instanceof Intern)
     let toReturn = ""
     engArray.forEach(intern => {
-      toReturn = toReturn + `<div class="card managercard  p0 m-3">
+      toReturn = toReturn + `<div class="card interncard p0 m-3">
       <!-- <img src="img_avatar1.png" alt="Avatar" style="width:100%"> -->
       <div class="container">
         <h4><b>${intern.getName()}</b></h4>
         <p>${Intern.getRole()}</p>
         <hr>
         <p>ID: ${intern.getId()}</p>
-        <p>Email: ${intern.email}</p>
-        <p>school: ${intern.schoolName}</p>
+        <p>Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
+        <p>school: ${intern.getSchool()}</p>
       </div>
     </div>
     `
-  
     });
    
     return toReturn;
   }
 
-  filterArray(employee, type) {
-    return employee instanceof type; 
-  }
 }
 module.exports = Utils
-
-/*
-`<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Hi! My name is ${answers.name}</h1>
-    <p class="lead">I am from ${answers.location}.</p>
-    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${answers.github}</li>
-      <li class="list-group-item">LinkedIn: ${answers.linkedin}</li>
-    </ul>
-  </div>
-</div>
-</body>
-</html>`;
-*/
