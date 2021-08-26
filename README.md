@@ -46,6 +46,7 @@ and follow the prompts.
 ![Running App Demo](assets/images/running_app.gif)
 ## Sample HTML Page Output
 See a sample output HTML page [here](./SAMPLE_INDEX.html)
+![Rendered Page](assets/images/rendered_page.png)
 ## Questions
 [Github rashir01](https://github.com/rashir01)
 
