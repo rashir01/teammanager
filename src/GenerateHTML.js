@@ -3,6 +3,11 @@ const Engineer = require('../lib/Engineer');
 const Intern = require('../lib/Intern');
 const Manager = require('../lib/Manager');
 class Utils {
+  /*
+    function to generate a string representing an html file and writes it
+    input: teamArray an array of team memebers to write to file
+    return none
+  */
   static generateSkeletonHTML(teamArray) {
     let htmlSkeleton = `<!DOCTYPE html>
     <html lang="en">
@@ -36,6 +41,11 @@ class Utils {
       );
   }
 
+  /*
+    Purpose: generate card for the manager type
+    Input: manager object
+    return: string html of the manager card
+  */
   static addManagerToSkeleton(manager) {
     return `<div class="row card-row manager-row justify-content-center p0 m-3">
         <div class="card managercard  p0 m-3">
@@ -51,6 +61,11 @@ class Utils {
       </div>`
   }
 
+  /*
+    purpose: generate cards for all the engineers
+    input: team array that may or may not contain entineers
+    returns: string with cards representing all engineers
+  */
   static addEngineerToSkeleton(teamArray) {
     const engArray = teamArray.filter(teamMember => teamMember instanceof Engineer)
     let toReturn = ""
@@ -67,10 +82,14 @@ class Utils {
     </div>
     `
     });
-   
     return toReturn;
   }
 
+  /*
+    purpose: generate cards for all the interns
+    input: team array that may or may not contain interns
+    returns: string with cards representing all interns
+  */
   static addInternToSkeleton(teamArray) {
     const engArray = teamArray.filter(teamMember => teamMember instanceof Intern)
     let toReturn = ""
@@ -86,10 +105,8 @@ class Utils {
       </div>
     </div>
     `
-    });
-   
+    });  
     return toReturn;
   }
-
 }
 module.exports = Utils
